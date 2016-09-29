@@ -1,0 +1,89 @@
+{% extends '_user_layout.html' %}
+
+{% block script %}
+<script>
+	$(function(){
+		// console.log('mhere');
+	    $('#fileupload').fileupload({
+			url: '/upload',
+			dataType: 'json',
+			add: function (e, data) {
+				data.submit();
+			},
+	        success:function(response,status) {
+	        	console.log('Upload Done!',  response);
+	        	var filePath = '/static/Uploads/' + response.filename;
+	        	// console.log(filePath);
+			    $('#imgUpload').attr('src', filePath);
+			    $('#filePath').val(filePath);
+	        },
+	        error:function(error){
+	        	console.log(error);
+	        }
+		});
+	});
+</script>
+{% endblock %}
+
+{% block content %}
+<section>
+	<!-- Form addWish -->
+	<form role='form' class="frmAddWish" method='POST' action='/addWish'>
+		<fieldset>
+			<!-- Form Name -->
+			<legend>Create Your Wish</legend>
+
+			<!-- Text Input -->
+			<div class="form-group">
+				<label or='txtTitle'>Title</label>
+				<input type="text" class="form-control input-md" name="txtTitle" id='txtTitle' placeholder='Title' autofocus="true">
+			</div>
+
+			<!-- TextArea -->
+			<div class="form-group">
+				<label for='txtDescription'>Description</label>
+				<textarea class="form-control" id='txtDescription' name='txtDescription'></textarea>
+			</div>
+			<!-- Upload photo -->
+			<div class="form-group">
+                <label for="txtPost">Photos</label>
+ 
+                <div class="input-group">
+                    <span class="input-group-btn">
+	                    <span class="btn btn-primary btn-file">
+	                        Browse&hellip; <input type="file" id="fileupload" name="file" multiple>
+	                    </span>
+	                    <div class="pull-right">
+						    <img id="imgUpload" style="width: 140px; height: 140px;" class="img-thumbnail">
+						    <input type="hidden" name="filePath" id="filePath"></input>
+						</div>
+                    </span>
+                    
+                </div>
+ 
+            </div>
+
+			<div class="form-group">
+                <label>Mark this as private and not visible to others.</label>
+                <br/>
+                <input name="private" id="chkPrivate" type="checkbox"> Mark as Private <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </div>
+ 
+            <div class="form-group">
+                <label>Have you already accomplished this?</label>
+                <br/>
+                <input name="done" id="chkDone" type="checkbox"> Mark as Done <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </div>
+
+			<!-- Button -->
+			<div class="form-group">
+			<hr>
+				<label for='btnPublish'></label>
+				<input type="submit" name="btnPublish" id='btnPublish' class="btn btn-primary" value='Publish'>
+				<label for='btnCancel'></label>
+				<a href="{{ url_for('userHome') }}" class="btn btn-default" name="btnCancel">Cancel</a>
+			</div>
+		</fieldset>
+	</form>
+</section>
+{% endblock %}

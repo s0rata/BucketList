@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %} {% endblock %}
+	<!-- Bootstrap -->
+	<link href="{{ url_for('static', filename='css/library/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+	<!-- Local CSS -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tmpl.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fileupload.css') }}">
+	{% block style %} {% endblock %}
+
+	<!-- jQuery-2.2.4 -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/jquery-2.2.4.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/jquery.ui.widget.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/jquery.fileupload.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/jquery.fileupload-process.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/library/jquery.fileupload-ui.js') }}"></script>
+	{% block script %} {% endblock %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="/dashboard">Dashboard</a></li>
+					<li role='presentation' ><a href="{{ url_for('addWish') }}">Add Item</a></li>
+					<li role="presentation"><a href="{{ url_for('logout') }}">Logout</a></li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">Python Flask App</h3>
+		</div>
+	</div>
+	{% block content %} {% endblock %}
+	<footer class="footer text-center">
+		<p>&copy; Morakot 2016 </p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends '_home_layout.html' %}
+
+{% block head %}
+<title>Sign-in Page</title>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	<h1>Login</h1>
+	<form class="form-signin" action="{{ url_for('signin') }}" method="POST">
+		<div class="form-group">
+			<label for="username" class="sr-only">Username</label>
+			<input type="text" name="username" id="username" class="form-control" placeholder="Email Address" required autofocus>
+		</div>
+		<div class="form-group">
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+		</div>
+		<div>
+			<button class="btn btn-primary btn-block" id="btnSignIn" type="submit">Sign In</button>
+		</div>
+	</form>
+	<div class="message">
+		<p class="alert {{ alert }} " role="alert"><strong>{{ error }} </strong>{{ message }}</p>
+	</div>
+</div>
+{% endblock %}
+

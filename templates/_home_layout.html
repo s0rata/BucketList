@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head%}
+	<title>Python Flask Bucket List App</title>
+	{% endblock %}
+	<!-- Bootstrap -->
+	<link href="{{ url_for('static', filename='css/library/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+	{% block style %} {% endblock %}
+
+	{% block script%} {% endblock %}
+</head>
+<body>
+	<div class="container" id="contain">
+		<div class="header">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role='presentation' class="active"><a href="{{ url_for('index') }}">Home</a></li>
+					<li role="presentation"><a href="{{ url_for('signin') }}">Sign In</a></li>
+					<li role="presentation"><a href="{{ url_for('signup') }}">Sign Up</a></li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">Python Flask App</h3>
+		</div>
+	</div>
+
+	{% block content %} {% endblock %}
+	
+	<footer class="footer text-center">
+		<p>&copy; Morakot 2016 </p>
+	</footer>
+</body>
+</html>
